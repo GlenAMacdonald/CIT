@@ -15,18 +15,32 @@ class Book:
         self.CallNumber = CallNumber
         self.Stock = Stock
         self.Loaned = Loaned
-
-Books = list()
-
-# os.chdir(os.getcwd() + '/Apply Introductory Programming/SWT3/')
-BookFile = open('books.txt','r')
-BookList = BookFile.readlines()
-for itemString in BookList:
-    itemList = itemString.split(';')
-    Books.append(Book(itemList[0],itemList[1],itemList[2],itemList[3],itemList[4],itemList[5]))
-    # print(item) 
+    
+    def toString(self):
+        rString = self.Title + ';' + self.Author + ';' + self.ISBN + ';' + self.CallNumber + ';' + self.Stock + ';' + self.Loaned + ';'
+        return rString
 
 
+# books.append(Book('Fairies','Glen','12345','ab123','4','3'))
 
-Books.append(Book('Fairies','Glen',12345,'ab123',4,False))
+def importBooks():
+    # os.chdir(os.getcwd() + '/Apply Introductory Programming/SWT3/')
+    books = list()
+    bookFile = open('books.txt','r')
+    bookList = bookFile.readlines()
+    for itemString in bookList:
+        itemList = itemString.split(';')
+        books.append(Book(itemList[0],itemList[1],itemList[2],itemList[3],itemList[4],itemList[5]))
+        # print(item) 
+    return books
+
+def exportBooks(books):
+    bookFile = open('outBooks.txt','w')
+    for book in books:
+        bookString = book.toString() + '\n'
+        bookFile.write(bookString)
+    bookFile.close()
+
+
+
 
