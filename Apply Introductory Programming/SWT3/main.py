@@ -7,6 +7,7 @@ Last Edited: 17-Aug-2022
 
 """
 from collections import UserList
+from email.policy import default
 
 class Book:
     def __init__(self, Title, Author, ISBN, CallNumber, Stock, Loaned):
@@ -42,16 +43,16 @@ class Books(UserList):
         # return books
 
     def exportBooks(self):
-        print('Exporting Inventory\n')
-        bookFile = open('outBooks.txt','w')
+        print('\nExporting Inventory\n')
+        bookFile = open('books.txt','w')
         for book in self:
             bookString = book.toString() + '\n'
             bookFile.write(bookString)
         bookFile.close()
-        print('Export complete')
+        print('Export complete\n')
 
     def addBook(self):
-        print("Adding a book\n")
+        print("\nAdding a New Book\n")
         title = input("Title> ")
         author = input("Author> ")
         isbn = input("ISBN> ")
@@ -61,7 +62,7 @@ class Books(UserList):
         self.append(Book(title,author,isbn,callNumber,stock,loaned))
 
     def removeBook(self):
-        print("Removing a book \n")
+        print("\nRemoving a book \n")
         author = input("Author> ")
         callNumber = input("Call Number> ")
         for book in self:
@@ -69,15 +70,38 @@ class Books(UserList):
                 self.remove(book)
     
     def displayBooks(self):
-        print("Displaying Westlands Books Inventory\n")
+        print("\nDisplaying Westlands Books Inventory\n")
         ts = ['Name','Author','ISBN','Call Number','Stock','Loaned','Available']
-
         print(f"{ts[0]:<50}\t{ts[1]:<20}\t{ts[2]:<13}\t{ts[3]:<13}\t{ts[4]}\t{ts[5]}\t{ts[6]}")
         for book in self:
             print(f"{book.Title[0:50]:<50}\t{book.Author[0:20]:<20}\t{book.ISBN[0:13]:<13}\t{book.CallNumber[0:13]:<13}\t{book.Stock:^5}\t{book.Loaned:^6}\t{int(book.Stock)-int(book.Loaned):^9}")
 
-    
+    def displayMenu(self):
+        print('\nWestlands Books Inventory Management Subsystem\n')
+        print('1. Display Inventory')
+        print('2. Add a Book')
+        print('3. Remove a Book')
+        print('4. Export Inventory')
+        print('5. Quit IMS')
 
-# a = Books()
-# a.importBooks()
-# a.displayBooks()
+books = Books()
+books.importBooks()
+
+while True:
+    books.displayMenu()
+    userInput = input('Select an option from the menu> ')
+    match userInput:
+        case '1':
+            books.displayBooks()
+        case '2':
+            books.addBook()
+        case '3':
+            books.removeBook()
+        case '4':
+            books.exportBooks()
+        case '5':
+            break
+        case other:
+            print('\nUnexpected command requested, exiting\n')
+            break
+    
