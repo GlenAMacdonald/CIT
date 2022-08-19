@@ -15,17 +15,17 @@ while(True):
     user_input = input("> ")
     if(user_input.lower() == "q"):
         break
-    totals.append(user_input)
+    totals.append(int(user_input))
 
 #Caclulate letter grade for each user response
 for total in totals:
-    if total <= "59":
+    if total <= 59:
         letters.append("F")
-    elif total <= "69":
+    elif total <= 69:
         letters.append("P")
-    elif total <= "79":
+    elif total <= 79:
         letters.append("C")
-    elif total <= "89":
+    elif total <= 89:
         letters.append("D")
     else:
         letters.append("HD")
