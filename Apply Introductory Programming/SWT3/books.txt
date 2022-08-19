@@ -8,5 +8,3 @@ Python Crash Course - 2nd Edition;Matthes,Eric;978-1593279288;005.133/MAT;12;8;
 Python for Dummies;Maruch,Stef;978-0471778646;005.133/MAR;5;0;
 Beginning Programming with Python for Dummies;Mueller,John Paul;978-1119457893;005.133/MUE;7;5;
 Beginning COBOL for Programmers;Coughlan,Michael;978-1430262534;005.133/COU;1;0;
-haha;me;123;123;5;1;
-hahaha;me;123;123;5;1;

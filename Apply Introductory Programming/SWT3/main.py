@@ -65,9 +65,12 @@ class Books(UserList):
         print("\nRemoving a book \n")
         author = input("Author> ")
         callNumber = input("Call Number> ")
+        removalList = list()
         for book in self:
             if book.Author == author and book.CallNumber == callNumber:
-                self.remove(book)
+                removalList.append(book)
+        for book in removalList:
+            self.remove(book)
     
     def displayBooks(self):
         print("\nDisplaying Westlands Books Inventory\n")
