@@ -34,11 +34,15 @@ class Books(UserList):
 
     # Importbooks opens up the text file 'database', creates the book object and adds it to Books
     def importBooks(self):
+        print("Opening book.txt to retrieve list of books")
         bookFile = open('books.txt','r')
+        print("book.txt successfully opened, reading books from file")
         bookList = bookFile.readlines()
+        print("Books read from file, saving to list")
         for itemString in bookList:
             itemList = itemString.split(';')
             self.append(Book(itemList[0],itemList[1],itemList[2],itemList[3],itemList[4],itemList[5]))
+        print("Books successfully imported\n")
 
     # Exportbooks converts all the 'Book' objects in 'Books' to strings and stores them in the text file database
     def exportBooks(self):
