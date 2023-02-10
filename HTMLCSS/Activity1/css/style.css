@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+    max-width: 1200px;
+    margin: auto;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+header {
+    width: 100%;
+    color: white;
+}
+
+section {
+    background-color: whitesmoke;
+    width: 90%;
+    margin: auto;
+}
+
+main {
+    background-color: whitesmoke;
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+}
+
+article {
+    background-color: whitesmoke;
+    width: 50%;
+    float: left;
+}
+
+aside {
+    background-color: whitesmoke;
+    width: 35%;
+    float: right;
+}
+
+footer {
+    background-color: whitesmoke;
+    width: 90%;
+    margin: auto;
+    overflow: auto;
+}
+
+div {
+    display: inline-block;
+    font-size: 14px;
+}
