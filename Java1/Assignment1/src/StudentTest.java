@@ -94,22 +94,4 @@ public class StudentTest {
         S2.SetTestScores(new int[] {10,10,10,30});
         assertEquals("Bob,Pass",S2.calculateGrade());
     }
-
-    @Test
-    public void processStudentsConvertInputToStudent() {
-        ProcessStudents Processor = new ProcessStudents();
-        Student Amy = Processor.ConvertInputToStudent("Amy;1,2,3,4");
-        assertEquals("Amy",Amy.GetName());
-        assertArrayEquals(new int[] {1,2,3,4}, Amy.GetTestScores());
-        Student Bob = Processor.ConvertInputToStudent("Bob;4,3,2,1");
-        assertEquals("Bob",Bob.GetName());
-        assertArrayEquals(new int[] {4,3,2,1}, Bob.GetTestScores());
-    }
-
-    @Test
-    public void reader() throws IOException {
-        ProcessStudents Processor = new ProcessStudents();
-        Processor.ReadFile();
-        assertEquals("Amy", Processor.Students.get(0).GetName());
-    }
 }

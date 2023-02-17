@@ -1,43 +1,55 @@
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
+/**
+ * @author Glen Macdonald
+ * @date 17-Feb-2023
+ * @version 1.0
+ * @decription: Class ProcessStudents reads a given file 'scores.txt', processes all the students scores and writes the results to the output file 'results.txt'.
+ */
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProcessStudents {
-    private String inputFileName = "scores.txt";
-    private String outputFileName = "results.txt";
+    private String inputFileName = "/Users/glenmacdonald/IdeaProjects/CIT/Java1/Assignment1/src/scores.txt";
+    private String outputFileName = "/Users/glenmacdonald/IdeaProjects/CIT/Java1/Assignment1/src/results.txt";
     private String authorName = "Glen Macdonald";
     private String Heading;
-    private File outputFile;
     public ArrayList<Student> Students = new ArrayList<Student>();
 
     public ProcessStudents() {
 
     }
 
-    private void GenerateFile() throws IOException {
-        this.outputFile = new File(this.outputFileName);
-
-        if (this.outputFile.createNewFile()) {
-            System.out.println("File created: " + this.outputFile.getName());
-        } else {
-            System.out.println("File already exists.");
+    private void WriteFile() {
+        try {
+            new FileWriter(this.outputFileName, false).close();
+            FileWriter writer = new FileWriter(this.outputFileName);
+            this.CreateHeading();
+            writer.write(this.Heading);
+            for (Student student: this.Students) {
+                writer.write(System.getProperty( "line.separator" ));
+                writer.write(student.calculateGrade());
+            }
+            writer.close();
+        } catch (Exception ex) {
+            System.out.println("Error writing to file " + ex);
         }
     }
 
-    public void ReadFile() throws IOException {
-        File inputFile = new File(this.inputFileName);
-        BufferedReader reader = new BufferedReader(new FileReader(this.inputFileName));
-        String inLine = reader.readLine();
-        while (inLine != null) {
-            Student newStudent = ConvertInputToStudent(inLine);
-            this.Students.add(newStudent);
-            inLine = reader.readLine();
+    public void ReadFile() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(this.inputFileName));
+            String inLine = reader.readLine();
+            while (inLine != null) {
+                Student newStudent = ConvertInputToStudent(inLine);
+                this.Students.add(newStudent);
+                inLine = reader.readLine();
+            }
+            reader.close();
+        } catch (Exception ex) {
+            System.out.println("Error reading from file " + ex);
         }
-        reader.close();
     }
 
     public Student ConvertInputToStudent(String inputLine){
@@ -49,14 +61,14 @@ public class ProcessStudents {
     }
 
     private void CreateHeading() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddd MMM HH:mm:ss YYYY");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE MMM H:m:s YYYY");
         LocalDateTime now = LocalDateTime.now();
         this.Heading = "Report for " + this.authorName + ' ' + dtf.format(now);
     }
 
-    public void main(String[] args) {
-
-        this.CreateHeading();
-
+    public static void main(String[] args) {
+        ProcessStudents Process = new ProcessStudents();
+        Process.ReadFile();
+        Process.WriteFile();
     }
 }

@@ -1,3 +1,13 @@
+/**
+ * @author Glen Macdonald
+ * @date 17-Feb-2023
+ * @version 1.0
+ * @decription: Class Student takes in two attributes:
+ *      The first a string of the students name
+ *      The second a list of integers representing their score for each test
+ *   It allows calculation of the total score by adding together all scores and prints the resultant grade.
+ */
+
 public class Student {
     private String name;
     private final int MAX_TESTS = 4;
@@ -32,8 +42,6 @@ public class Student {
 
         for (int index = 0;index < nTestScores; index++) {
             intTestScores[index] = Integer.parseInt(strTestScores[index]);
-//            System.out.println(Integer.parseInt(strTestScores[index]));
-//            System.out.println(intTestScores[0]);
         }
 
         SetTestScores(intTestScores);
