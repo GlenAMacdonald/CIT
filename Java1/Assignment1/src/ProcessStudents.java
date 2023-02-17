@@ -2,7 +2,7 @@
  * @author Glen Macdonald
  * @date 17-Feb-2023
  * @version 1.0
- * @decription: Class ProcessStudents reads a given file 'scores.txt', processes all the students scores and writes the results to the output file 'results.txt'.
+ * @description: Class ProcessStudents reads a given file 'scores.txt', processes all the students scores and writes the results to the output file 'results.txt'.
  */
 
 import java.io.*;
@@ -18,7 +18,7 @@ public class ProcessStudents {
     public ArrayList<Student> Students = new ArrayList<Student>();
 
     public ProcessStudents() {
-
+//  Deliberately empty constructor
     }
 
     private void WriteFile() {
